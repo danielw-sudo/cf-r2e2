@@ -2,7 +2,7 @@
 
 **R2E2** is a high-performance, private asset management dashboard designed for Cloudflare R2. It provides a sleek, Google Drive-like experience for your R2 buckets, enhanced with Workers AI for automatic tagging, image analysis, and advanced search.
 
-![Hero Placeholder](https://via.placeholder.com/1200x600?text=R2E2+Dashboard+Overview+Animation)
+![R2E2 Dashboard](docs/hero.png)
 *Sleek, responsive, and AI-powered.*
 
 ---
@@ -73,10 +73,10 @@ graph TD
 ## 📸 Screenshots
 
 ### Grid View & Gallery
-![Gallery Placeholder](https://via.placeholder.com/800x450?text=Gallery+Grid+View)
+![Gallery Grid](docs/gallery.png)
 
 ### AI Metadata & Tagging
-![AI Placeholder](https://via.placeholder.com/800x450?text=AI+Analysis+Panel)
+![AI Analysis](docs/ai.png)
 
 ---
 
