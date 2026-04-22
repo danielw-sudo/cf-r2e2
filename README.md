@@ -72,8 +72,11 @@ graph TD
 
 ## 📸 Screenshots
 
-### Grid View & Gallery
+### Gallery & Advanced Search
 ![Gallery Grid](docs/gallery.png)
+
+### Intelligent Upload & Optimization
+![Upload UI](docs/upload.png)
 
 ### AI Metadata & Tagging
 ![AI Analysis](docs/ai.png)
