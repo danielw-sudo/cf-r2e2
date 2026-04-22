@@ -13,7 +13,7 @@
   >
     <!-- Logo -->
     <div class="flex h-14 items-center gap-2 border-b border-gray-200 dark:border-gray-700 px-4">
-      <img src="/icons/icon-96x96.png" alt="R2-E2" class="h-8 w-8 shrink-0 rounded" />
+      <img src="/logo.png" alt="R2-E2" class="h-8 w-8 shrink-0 rounded" />
       <span v-if="!collapsed" class="text-sm font-semibold text-gray-900 dark:text-gray-100 truncate">
         R2-E2
       </span>
