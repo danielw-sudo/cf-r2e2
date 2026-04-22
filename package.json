@@ -1,0 +1,15 @@
+{
+	"name": "r2-e2-root",
+	"version": "0.0.0",
+	"private": true,
+	"scripts": {
+		"lint": "npx @biomejs/biome check packages/dashboard/src packages/worker/src || (npx @biomejs/biome check --write packages/dashboard/src packages/worker/src/; exit 1)",
+		"build-dashboard": "pnpm run --filter r2-e2-dashboard build",
+		"build-worker": "pnpm run --filter r2-e2 build",
+		"build": "pnpm build-dashboard && pnpm build-worker"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "1.9.4",
+		"wrangler": "^4.20.1"
+	}
+}

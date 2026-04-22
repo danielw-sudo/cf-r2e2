@@ -1,0 +1,41 @@
+.DS_Store
+node_modules
+dist
+spa
+
+# local env files
+.env.local
+.env.*.local
+**/.env
+.dev.vars
+
+# deployment config (contains personal bucket/domain/DB bindings)
+packages/worker/wrangler.toml
+
+# claude config and devlog (internal only)
+.claude/
+DEVLOG.md
+
+# lock files (pnpm-lock.yaml is tracked, ignore npm/yarn)
+package-lock.json
+
+# log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# editor directories
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# build artifacts
+packages/worker/bin
+packages/worker/coverage
+packages/worker/.wrangler
+packages/worker/dev/.wrangler

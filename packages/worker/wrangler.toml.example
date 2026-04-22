@@ -1,0 +1,51 @@
+#:schema node_modules/wrangler/config-schema.json
+name = "r2e2"
+compatibility_date = "2024-11-06"
+main = "src/index.ts"
+workers_dev = false
+
+routes = [
+  { pattern = "r2.example.com", custom_domain = true }
+]
+
+# ---------- Static dashboard ----------
+[assets]
+directory = "../dashboard/dist/spa"
+binding = "ASSETS"
+html_handling = "auto-trailing-slash"
+not_found_handling = "single-page-application"
+
+# ---------- Bucket bindings ----------
+# Add one [[r2_buckets]] entry per bucket you want to manage.
+# Binding names must be valid JS identifiers (underscores, not hyphens).
+
+[[r2_buckets]]
+binding = "my_bucket"
+bucket_name = "my-bucket"
+
+# [[r2_buckets]]
+# binding = "another_bucket"
+# bucket_name = "another-bucket"
+
+# ---------- D1 Database ----------
+[[d1_databases]]
+binding = "DB"
+database_name = "r2e2-db"
+database_id = "<your-d1-database-id>"
+
+# ---------- Workers AI ----------
+[ai]
+binding = "AI"
+
+# ---------- Cron triggers ----------
+[triggers]
+crons = ["0 3 * * *"]
+
+# ---------- Environment variables ----------
+[vars]
+R2E2_CONFIG = "{\"readonly\": false}"
+CF_ACCESS_TEAM_NAME = "<your-cf-access-team-name>"
+
+# ---------- Observability ----------
+[observability]
+enabled = true
