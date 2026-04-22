@@ -48,6 +48,44 @@ Visit `http://localhost:5173` to explore your local R2E2 instance!
 
 ---
 
+## ☁️ Cloudflare Deployment
+
+Ready to go live? Follow these steps to deploy R2E2 to your Cloudflare account.
+
+### 1. Create Resources
+Run these commands in your terminal to initialize your production storage and database:
+
+```bash
+# Create your R2 buckets (one or more)
+npx wrangler r2 bucket create my-bucket
+
+# Create your D1 Database
+npx wrangler d1 create r2e2-db
+```
+
+### 2. Configure `wrangler.toml`
+Copy `packages/worker/wrangler.toml.example` to `packages/worker/wrangler.toml` and fill in your:
+*   `database_id`: (get this from the `npx wrangler d1 create` output)
+*   `bucket_name`: Your actual R2 bucket name.
+*   `CF_ACCESS_TEAM_NAME`: Your Cloudflare Access team name (if using Zero Trust).
+
+### 3. Initialize Database Schema
+Apply the SQL schema to your production D1 database:
+```bash
+cd packages/worker
+npx wrangler d1 execute r2e2-db --remote --file=src/modules/db/schema.sql
+```
+
+### 4. Build & Deploy
+Build the frontend first, then deploy the Worker.
+```bash
+# From the root
+pnpm build-dashboard
+cd packages/worker && npx wrangler deploy
+```
+
+---
+
 ## 🏗️ Architecture
 
 R2E2 is built on the modern Cloudflare stack for maximum speed and minimal cost.
