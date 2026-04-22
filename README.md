@@ -1,95 +1,89 @@
-# R2E2
+# 🚀 R2E2: Private Asset Management Dashboard
 
-HELLO WORLD!
-Private asset management dashboard for Cloudflare R2. Built on Vue 3 + Tailwind CSS v4 + Hono Workers.
+**R2E2** is a high-performance, private asset management dashboard designed for Cloudflare R2. It provides a sleek, Google Drive-like experience for your R2 buckets, enhanced with Workers AI for automatic tagging, image analysis, and advanced search.
 
-## Stack
+![Hero Placeholder](https://via.placeholder.com/1200x600?text=R2E2+Dashboard+Overview+Animation)
+*Sleek, responsive, and AI-powered.*
 
-- **Frontend**: Vue 3, Pinia, Tailwind CSS v4, Radix Vue
-- **Backend**: Hono on Cloudflare Workers
-- **Storage**: Cloudflare R2 (multi-bucket)
-- **Database**: Cloudflare D1 (media index, tags, settings, usage tracking)
-- **AI**: Workers AI (vision analysis, auto-tagging)
-- **Auth**: Cloudflare Zero Trust
+---
 
-## Features
+## ✨ Features
 
-**File Management**
-- Browse, upload, delete, rename, move files across multiple R2 buckets
-- Client-side image optimization (compress, resize, format conversion)
-- Multipart upload for large files (95MB+ chunks)
-- In-browser preview: images, PDFs, text, markdown, CSV, JSON, audio, video
-- HTTP and custom metadata editing
-- Presigned URL generation (HMAC-SHA256, 24h expiry)
-- Public permanent sharing via a locked-down `share.*` subdomain (bypasses Zero Trust, signed tokens)
+*   **📦 Multi-Bucket Management**: Browse, upload, and organize files across multiple R2 buckets from a single interface.
+*   **🤖 AI-Powered Intelligence**: Automatic image analysis (Vision) and tagging (Llama) to make your media searchable.
+*   **🔍 Advanced Search**: Full-text search across all indexed media, filterable by bucket, tag, or file type.
+*   **⚡ Frictionless Sharing**: Generate time-limited presigned URLs or permanent public share links via a secure subdomain.
+*   **🖼️ Rich Previews**: In-browser previews for images, PDFs, text, markdown, CSV, JSON, audio, and video.
+*   **🛠️ Developer First**: Built with Vue 3, Tailwind CSS v4, Hono, and D1.
 
-**AI**
-- On-demand image analysis (title, description, source classification)
-- Daily cron analysis (batch 20 images/run across all buckets)
-- Auto-tagging with configurable tagger model + prompt
-- Separate Vision / Tagger settings with model tier badges
-- Usage monitor: daily breakdown, success rates, latency tracking
+---
 
-**Search & Discovery**
-- Full-text search across D1-indexed media (title + description)
-- Filter by bucket, tag, sort by relevance/date/name
-- Inline file preview from search results
-- Tag system: AI auto-tagging, manual CRUD, gallery filtering
+## 🛠️ Quick Start (Local Dev)
 
-**Gallery**
-- Grid view with lazy-loaded thumbnails
-- Filter by type (image/video/document), sort, tag-based filtering
-- Context menu with rename, delete, presign, metadata actions
+Experience R2E2 locally in under 60 seconds without needing Cloudflare credentials.
 
-**Sharing**
-- `r2.tools4all.ai/shared` tab lists every publicly shared asset with copy-URL + revoke
-- `share.tools4all.ai` is a separate, auth-free surface serving only signed share tokens and a read-only gallery; everything else returns a cute 404 that auto-redirects
-- Two token flavors: `/share/p/:bucket/:token` (permanent, HMAC-signed) and `/share/t/:bucket/:token` (presigned, 24h)
-
-**Other**
-- Dark mode (light/dark/system)
-- Upload queue with progress tracking
-- Orphan scanner (stale sidecars, dangling media rows, unused tags)
-- Daily maintenance cron (batch AI analysis, backfill, orphan count)
-
-## Setup
-
+### 1. Clone & Install
 ```bash
+git clone https://github.com/danielw-sudo/cf-r2e2.git
+cd cf-r2e2
 pnpm install
 ```
 
-### Dev
-
+### 2. Seed Local Data
+This will initialize a local D1 database and populate a local R2 bucket with sample images and AI tags.
 ```bash
-cd packages/dashboard && pnpm dev
+pnpm seed:local
+```
+
+### 3. Launch
+Start the Worker and the Dashboard simultaneously.
+```bash
+# Terminal 1: Worker API
 cd packages/worker && npx wrangler dev
+
+# Terminal 2: Dashboard UI
+cd packages/dashboard && pnpm dev
+```
+Visit `http://localhost:5173` to explore your local R2E2 instance!
+
+---
+
+## 🏗️ Architecture
+
+R2E2 is built on the modern Cloudflare stack for maximum speed and minimal cost.
+
+```mermaid
+graph TD
+    User([User]) <--> Dashboard[Vue 3 Dashboard]
+    Dashboard <--> Worker[Hono Worker API]
+    Worker <--> R2[(Cloudflare R2)]
+    Worker <--> D1[(Cloudflare D1)]
+    Worker <--> AI[Workers AI]
+    D1 -.-> Index(Media Index & Tags)
 ```
 
-### Deploy
+*   **Frontend**: Vue 3 SPA + Pinia + Tailwind CSS v4.
+*   **Backend**: Hono framework running on Cloudflare Workers.
+*   **Database**: Cloudflare D1 for fast metadata indexing and search.
+*   **Storage**: Cloudflare R2 for reliable object storage.
+*   **AI**: Workers AI for on-demand and batch vision analysis.
 
-```bash
-cd packages/dashboard && npx vite build
-cd packages/worker && npx wrangler deploy
-```
+---
 
-Worker: `r2e2` on your custom domain (Zero Trust gated). Copy `wrangler.toml.example` to `wrangler.toml` and fill in your bindings.
+## 📸 Screenshots
 
-### Buckets
+### Grid View & Gallery
+![Gallery Placeholder](https://via.placeholder.com/800x450?text=Gallery+Grid+View)
 
-Edit `packages/worker/wrangler.toml` — add `[[r2_buckets]]` entries. Binding names must be valid JS identifiers (underscores, not hyphens).
+### AI Metadata & Tagging
+![AI Placeholder](https://via.placeholder.com/800x450?text=AI+Analysis+Panel)
 
-## Structure
+---
 
-```
-packages/
-  dashboard/     Vue 3 SPA (Vite + Tailwind CSS v4)
-  worker/        Hono API on Cloudflare Workers + D1
-```
-
-## Acknowledgements
+## 📜 Acknowledgements
 
 This project is a complete refactor of the original [R2-Explorer](https://github.com/G4brym/R2-Explorer) by Gabriel Massadas. We gratefully acknowledge Gabriel for the original work and panel structure design.
 
-## License
+## ⚖️ License
 
-MIT
+MIT License. See [LICENSE](LICENSE) for details.

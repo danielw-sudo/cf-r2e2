@@ -2,6 +2,7 @@
 	"name": "r2-e2",
 	"version": "2.0.0",
 	"description": "Private R2 asset management dashboard",
+	"type": "module",
 	"main": "./dist/index.js",
 	"module": "./dist/index.mjs",
 	"types": "./dist/index.d.ts",
@@ -16,7 +17,8 @@
 		"lint": "npx @biomejs/biome check src/ tests/ || (npx @biomejs/biome check --write src/ tests/; exit 1)",
 		"test": "npx vitest run --config tests/vitest.config.mts",
 		"package": "npm run build && npm pack",
-		"publish-npm": "npm publish"
+		"publish-npm": "npm publish",
+		"seed:local": "node scripts/seed.js"
 	},
 	"publishConfig": {
 		"access": "public"

@@ -1,0 +1,3 @@
+This is a sample document for R2E2 local testing.
+It contains some text to verify the previewer works.
+AI tagging might identify this as a "document".

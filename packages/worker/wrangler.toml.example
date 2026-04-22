@@ -44,7 +44,8 @@ crons = ["0 3 * * *"]
 # ---------- Environment variables ----------
 [vars]
 R2E2_CONFIG = "{\"readonly\": false}"
-CF_ACCESS_TEAM_NAME = "<your-cf-access-team-name>"
+R2E2_CORS = "true"
+# CF_ACCESS_TEAM_NAME = "<your-cf-access-team-name>"
 
 # ---------- Observability ----------
 [observability]
